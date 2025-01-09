@@ -26,7 +26,8 @@ ul {
 
 a {
     text-decoration: none;
-    color: #007bff;
+    color: #ffffff;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 /* Header */
@@ -43,7 +44,7 @@ a {
 
 .navbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 20px 50px;
     background: rgba(0, 0, 0, 0.6);
@@ -164,6 +165,63 @@ section {
 .footer button:hover {
     background: #0056b3;
 }
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-center;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .hero-content h2 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .cards {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .card {
+        max-width: 90%; /* Kartu lebih lebar pada layar kecil */
+        margin: 0 auto;
+    }
+
+    img {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .hero-content p {
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+
+    .footer form {
+        padding: 10px;
+    }
+
+    .footer label {
+        font-size: 0.9rem;
+    }
+}
 
     </style>
 </head>
@@ -235,4 +293,27 @@ section {
         </form>
     </footer>
 </body>
+<script>
+// Pilih semua link dengan hash (#) di dalam navbar
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', function (e) {
+        e.preventDefault(); // Mencegah tindakan default
+
+        // Dapatkan elemen target dari href
+        const targetId = this.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+
+        // Gulir secara halus ke elemen target
+        if (targetElement) {
+            window.scrollTo({
+                top: targetElement.offsetTop - 50, // -50 untuk kompensasi navbar
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+
+</script>
+
 </html>
